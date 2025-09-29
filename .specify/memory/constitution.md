@@ -1,50 +1,60 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+<!--
+Sync Impact Report - Constitution v1.0.0 Update
+================================================================
+Version Change: [TEMPLATE] → 1.0.0 (Initial constitution creation)
+Modified Principles: All principles created from template
+Added Sections: All core principles and Event Modeling methodology compliance
+Removed Sections: None (initial creation)
+
+Templates Status:
+✅ .specify/templates/plan-template.md - Constitution Check section aligns
+✅ .specify/templates/spec-template.md - Testing requirements align  
+✅ .specify/templates/tasks-template.md - TDD and testing structure aligns
+✅ .specify/templates/agent-file-template.md - Compatible with project structure
+✅ /workspace/Agents.md - TDD principles fully integrated
+
+Follow-up TODOs: None - all placeholders resolved
+-->
+
+# Event Modeling Ruby Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### I. Test-Driven Development (NON-NEGOTIABLE)
+TDD methodology is mandatory for all development work. The Red-Green-Refactor cycle must be strictly followed: Write failing test → Implement minimum code to pass → Refactor when tests pass. Every feature increment requires a test first. No production code without corresponding test coverage.
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+**Rationale**: Event Modeling requires precise behavioral specifications, which TDD enforces through executable documentation.
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+### II. Event Modeling Methodology Compliance
+All domain logic must follow Event Modeling patterns: Commands generate Events, Events update Read Models, Queries read from Read Models. The event store is the source of truth. Commands must be validated before generating events. No direct manipulation of read models outside the event stream.
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+**Rationale**: Event Modeling provides clear separation of concerns and audit trails essential for complex business domains.
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### III. Tidy First Structural Changes
+All code changes must separate structural modifications from behavioral changes. Structural changes (renaming, extracting methods, moving code) must be completed and tested before implementing new behavior. Never mix structural and behavioral changes in the same commit.
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+**Rationale**: Reduces cognitive load and debugging complexity by isolating change types.
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+### IV. Ruby Idiomatic Design
+Code must follow Ruby conventions and leverage language features appropriately. Use meaningful method names, avoid primitive obsession, prefer composition over inheritance. Embrace duck typing while maintaining clear contracts through tests.
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+**Rationale**: Idiomatic Ruby code is more maintainable and aligns with community best practices.
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+### V. Specification-Driven Development
+Features must be specified using the Event Modeling notation before implementation. Orange stickies (commands), blue stickies (events), green stickies (read models), and yellow stickies (external systems) must be documented. Implementation must match the visual specification exactly.
+
+**Rationale**: Event Modeling's visual notation prevents miscommunication and ensures complete system understanding.
+
+## Event Store Requirements
+
+Event storage must be append-only with immutable event records. Each event must include: event type, aggregate ID, timestamp, version number, and event data. Event versioning must handle schema evolution without breaking existing events. Replay capability is required for read model reconstruction.
+
+## Development Workflow
+
+All development follows the TDD cycle integrated with Event Modeling: Create Event Model → Write failing tests → Implement commands/events/read models → Ensure tests pass → Refactor structure. Code reviews must verify both test coverage and Event Modeling pattern compliance.
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+This constitution supersedes all other development practices. Amendments require documentation of impact on existing Event Models and migration plan for affected components. All development decisions must be justified against these principles. Use `Agents.md` for detailed TDD and Tidy First implementation guidance.
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+**Version**: 1.0.0 | **Ratified**: 2025-09-29 | **Last Amended**: 2025-09-29
