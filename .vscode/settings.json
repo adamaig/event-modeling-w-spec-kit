@@ -1,11 +1,13 @@
 {
-   // All of these settings are scoped only to the Ruby language
-   "[ruby]": {
-    "editor.defaultFormatter": "Shopify.ruby-lsp", // Use the Ruby LSP as the default formatter
-    "editor.formatOnSave": true, // Format files automatically when saving
-    "editor.tabSize": 2, // Use 2 spaces for indentation
-    "editor.insertSpaces": true, // Use spaces and not tabs for indentantion
-    "editor.semanticHighlighting.enabled": true, // Enable semantic highlighting
-    "editor.formatOnType": true, // Enable formatting while typing
-  }
+    "chat.promptFilesRecommendations": {
+        "speckit.constitution": true,
+        "speckit.specify": true,
+        "speckit.plan": true,
+        "speckit.tasks": true,
+        "speckit.implement": true
+    },
+    "chat.tools.terminal.autoApprove": {
+        ".specify/scripts/bash/": true,
+        ".specify/scripts/powershell/": true
+    }
 }
